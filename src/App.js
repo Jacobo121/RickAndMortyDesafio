@@ -1,23 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header' ;
+import Characters from './components/Characters';
+import React, { useState}  from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+  const [classCard, setClassCard] = useState()
+
+  const handleClick = () => {
+    setDarkMode(!darkMode);
+    console.log(darkMode)
+    const candleButton = document.querySelector(".App");
+    if (darkMode === false ) {
+      candleButton.classList.add('bg-dark', 'text-light');
+      candleButton.classList.remove('bg-ligth', 'text-dark');
+      setClassCard('bg-dark', 'text-ligth');
+    } else {
+      candleButton.classList.remove('bg-dark', 'text-light');
+      candleButton.classList.add('bg-ligth', 'text-dark');
+      setClassCard('bg-ligth', 'text-dark');
+    } 
+  };
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header onHandleClick={handleClick} darkMode={darkMode} />
+      <Characters classCard={classCard} />
     </div>
   );
 }

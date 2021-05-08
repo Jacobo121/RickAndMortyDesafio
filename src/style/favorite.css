@@ -1,0 +1,67 @@
+.favoriteImg {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.favoriteImg:hover {
+    transition: 0.5s;
+    filter: grayscale(80%);
+    cursor: pointer;
+}
+
+.textImg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.textFavorite {
+    display: inline-block;
+    position: relative;
+}
+
+.textFavorite::after,.textFavorite::before {
+    content: "";
+    position: absolute;
+    width: 500px ;
+    height: 3px;
+    background-color: currentColor;
+    top: 0.6em;
+}
+
+.textFavorite::before {
+    left: -420px;
+}
+
+.textFavorite::after {
+    right: -420px;
+}
+
+.favoriteLine {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.favoriteLine::after,.favoriteLine::before {
+    content: "";
+    position: absolute;
+    width: 780px ;
+    height: 3px;
+    background-color: currentColor;
+    top: 0.6em;
+}
+
+.favoriteLine::before {
+    left: -240px;
+}
+
+.favoriteLine::after {
+    right: -240px;
+}
