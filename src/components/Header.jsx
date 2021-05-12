@@ -12,8 +12,8 @@ function Header(props) {
             <button className="btn btn-success mb-4 mt-4" type="button" onClick={props.onHandleClick}> 
             {
             props.darkMode?
-            'DarkMode':
-            'LightMode'
+            'LightMode':
+            'DarkMode'
             }
           </button>
         </div>

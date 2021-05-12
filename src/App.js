@@ -10,16 +10,15 @@ function App() {
 
   const handleClick = () => {
     setDarkMode(!darkMode);
-    console.log(darkMode)
     const candleButton = document.querySelector(".App");
-    if (darkMode === false ) {
-      candleButton.classList.add('bg-dark', 'text-light');
-      candleButton.classList.remove('bg-ligth', 'text-dark');
-      setClassCard('bg-dark', 'text-ligth');
-    } else {
+    if (darkMode === true ) {
       candleButton.classList.remove('bg-dark', 'text-light');
       candleButton.classList.add('bg-ligth', 'text-dark');
       setClassCard('bg-ligth', 'text-dark');
+    } else {
+      candleButton.classList.add('bg-dark', 'text-light');
+      candleButton.classList.remove('bg-ligth', 'text-dark');
+      setClassCard('bg-dark', 'text-ligth');
     } 
   };
 

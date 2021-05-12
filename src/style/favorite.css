@@ -29,7 +29,7 @@
 .textFavorite::after,.textFavorite::before {
     content: "";
     position: absolute;
-    width: 500px ;
+    width: 400px ;
     height: 3px;
     background-color: currentColor;
     top: 0.6em;
@@ -52,7 +52,7 @@
 .favoriteLine::after,.favoriteLine::before {
     content: "";
     position: absolute;
-    width: 780px ;
+    width: 789px ;
     height: 3px;
     background-color: currentColor;
     top: 0.6em;
