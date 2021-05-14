@@ -1,16 +1,20 @@
-import React, {useState, useEffect, useReducer, useMemo, useRef } from 'react';
+import React, {useState, useReducer, useMemo, useRef, useCallback } from 'react';
+import useCharacters from '../hooks/useCharacters';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Search from './Search';
 /* import {
     Card, CardImg, CardText, CardBody,
     CardTitle, Button
   } from 'reactstrap'; */
 
-import { Card, Button, Row, Col, Container, FormControl } from 'react-bootstrap';
+import { Card, Button, Row, Col, Container } from 'react-bootstrap';
 import '../style/favorite.css';
 
 const initialState = {
     favorites: []
 }
+
+const API = 'https://rickandmortyapi.com/api/character';
 
 const favoriteReducer = (state, action) => {
     console.log(...state.favorites);
@@ -31,10 +35,11 @@ const favoriteReducer = (state, action) => {
 }
 
 function Characters(props) {
-    const [characters, setCharacters] =  useState([]);
     const [favorites, dispatch] = useReducer(favoriteReducer, initialState);
     const [search, setSearch] = useState('');
     const searchInput = useRef(null);
+
+    const characters = useCharacters(API);
 
     const handleClick = (favorite) => {
         dispatch({ type: 'ADD_TO_FAVORITE', payload: favorite })
@@ -47,10 +52,14 @@ function Characters(props) {
         dispatch({ type: 'REMOVE_FAVORITE', payload: id })
     }
 
-    const handleSearch = () => {
-        /* setSearch(event.target.value) */
+    /* const handleSearch = () => {
+        setSearch(event.target.value) 
         setSearch(searchInput.current.value);
-    }
+    } */
+
+    const handleSearch = useCallback(() => {
+        setSearch(searchInput.current.value)
+    }, [])
 
     /* const filteredUsers = characters.filter((user) => {
         return user.name.toLowerCase().includes(search.toLowerCase());
@@ -61,12 +70,6 @@ function Characters(props) {
             return user.name.toLowerCase().includes(search.toLowerCase());
         }), [characters, search]
     )
-
-    useEffect(() => {
-        fetch('https://rickandmortyapi.com/api/character/')
-            .then(response => response.json() )
-            .then(data => setCharacters(data.results))
-    }, []); 
     
     return (
         <div className="Characters pb-4">
@@ -84,11 +87,7 @@ function Characters(props) {
                 </Container>
             </div>
 
-            <div className="search mb-4">
-                <Container>
-                    <FormControl ref={searchInput} type="text" value={search} onChange={handleSearch} placeholder="Buscar Personaje" />
-                </Container>
-            </div>
+            <Search search={search} searchInput={searchInput} handleSearch={handleSearch} />
 
             <Container>    
                 <Row>
